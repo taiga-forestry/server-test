@@ -8,7 +8,7 @@ const port = process.env.PORT || 8080;
 
 // app.use(cors());
 const corsOptions = {
-    origin: "*",
+    origin: "https://sunflower-washateria.netlify.app",
     credentials: true,
 };
 
@@ -19,7 +19,8 @@ app.use(require("./routes/order.js"));
 app.use(require("./routes/contact.js"));
 
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "https://sunflower-washateria.netlify.app"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST');
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
