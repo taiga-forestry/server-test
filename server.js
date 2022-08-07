@@ -59,3 +59,14 @@ app.listen(port, () => {
 app.get("/", (req, res) => {
     res.send("server is running!");
 });
+
+
+app.get("/check-username/:username", (req, response) => {
+    let db_connect = dbo.getDb();
+    let my_query = { username: req.params.username };
+
+    db_connect.collection("users").findOne(my_query, (err, res) => {
+        if (err) throw err;
+        return response.json(res);
+    })
+});
