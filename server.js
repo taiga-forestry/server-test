@@ -12,25 +12,25 @@ const corsOptions = {
     credentials: true,
 };
 
-// enable cors
-app.use(
-    cors({
-        origin: true,
-        optionsSuccessStatus: 200,
-        credentials: true,
-    })
-);
+// // enable cors
+// app.use(
+//     cors({
+//         origin: true,
+//         optionsSuccessStatus: 200,
+//         credentials: true,
+//     })
+// );
 
-app.options(
-    '*',
-    cors({
-        origin: true,
-        optionsSuccessStatus: 200,
-        credentials: true,
-    })
-);
+// app.options(
+//     '*',
+//     cors({
+//         origin: true,
+//         optionsSuccessStatus: 200,
+//         credentials: true,
+//     })
+// );
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(require("./routes/login-register.js"));
 app.use(require("./routes/order.js"));
