@@ -8,7 +8,7 @@ const port = process.env.PORT || 8080;
 
 // app.use(cors());
 const corsOptions = {
-    origin: "https://sunflower-washateria.netlify.app",
+    origin: "*",
     credentials: true,
 };
 
@@ -35,15 +35,4 @@ app.listen(port, () => {
     });
 
     console.log(`Server is running on port: ${port}`);
-});
-
-
-app.get(("/check-username/:username"), (req, response) => {
-    let db_connect = dbo.getDb();
-    let my_query = { username: req.params.username };
-
-    db_connect.collection("users").findOne(my_query, (err, res) => {
-        if (err) throw err;
-        return response.json(res);
-    })
 });
