@@ -12,18 +12,36 @@ const corsOptions = {
     credentials: true,
 };
 
-app.use(cors(corsOptions));
+// enable cors
+app.use(
+    cors({
+        origin: true,
+        optionsSuccessStatus: 200,
+        credentials: true,
+    })
+);
+
+app.options(
+    '*',
+    cors({
+        origin: true,
+        optionsSuccessStatus: 200,
+        credentials: true,
+    })
+);
+
+// app.use(cors(corsOptions));
 app.use(express.json());
 app.use(require("./routes/login-register.js"));
 app.use(require("./routes/order.js"));
 app.use(require("./routes/contact.js"));
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST');
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
 
 // get driver connection
 const dbo = require("./db/conn");
